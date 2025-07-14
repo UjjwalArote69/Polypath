@@ -5,6 +5,7 @@ const connectDB = require("./config/db");
 
 const userRoutes = require("./routes/user.route");
 const skillRoutes = require("./routes/skill.route");
+const journalRoutes = require("./routes/journal.route");
 
 dotenv.config();
 connectDB();
@@ -20,5 +21,7 @@ app.get("/", (req, res) => {
 
 app.use("/api/users", userRoutes);
 app.use("/api/skills", skillRoutes);
+app.use("/api/journals", journalRoutes);
+
 
 module.exports = app;
