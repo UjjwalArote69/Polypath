@@ -3,11 +3,19 @@ const User = require("../models/user.model");
 // ✅ Register a user
 module.exports.registerUser = async (req, res) => {
   try {
-    const { firstname, lastname, username, email, password, avatar, interests } = req.body;
+    const { fullname, username, email, password, avatar, interests } = req.body;
+    const { firstname, lastname } = fullname || {}; // destructure safely
+
+    if (!firstname || !username || !email || !password) {
+      return res
+        .status(400)
+        .json({ message: "All required fields must be provided" });
+    }
 
     const existingUser = await User.findOne({ email });
-    if (existingUser)
+    if (existingUser) {
       return res.status(409).json({ message: "User already exists" });
+    }
 
     const hashedPassword = await User.hashPassword(password);
 
@@ -21,6 +29,12 @@ module.exports.registerUser = async (req, res) => {
     });
 
     const token = newUser.generateAuthToken();
+
+    console.log("New user registered:", {
+      fullname: newUser.fullname,
+      username: newUser.username,
+      email: newUser.email,
+    });
 
     res.status(201).json({
       message: "User registered successfully",
@@ -44,6 +58,11 @@ module.exports.registerUser = async (req, res) => {
 module.exports.loginUser = async (req, res) => {
   try {
     const { emailOrUsername, password } = req.body;
+
+    console.log("Login attempt with:", {
+      emailOrUsername,
+      password
+    });
 
     const user = await User.findOne({
       $or: [
