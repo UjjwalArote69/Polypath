@@ -3,6 +3,7 @@ import { FcGoogle } from "react-icons/fc";
 import { useState } from "react";
 import toast from "react-hot-toast";
 import { registerUser } from "../services/auth";
+import { useUser } from "../context/UserDataContext";
 
 const Register = () => {
   const [firstName, setFirstName] = useState("");
@@ -10,6 +11,7 @@ const Register = () => {
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const { user, setUser } = useUser();
 
   const navigate = useNavigate();
 
@@ -37,10 +39,13 @@ const Register = () => {
     // console.log("User data to be sent:", userData);
 
     try {
-      await registerUser(userData);
+      const userdata = await registerUser(userData);
 
+      setUser(userdata.user);
+      localStorage.setItem("user", JSON.stringify(userdata.user));
+      localStorage.setItem("token", userdata.user.token);
       toast.success("Registration successful!");
-      navigate("/login");
+      navigate("/skill-selection");
     } catch (error) {
       console.log("Full error object:", error); // Add this line
       const errMsg =

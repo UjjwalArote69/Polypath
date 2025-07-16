@@ -20,7 +20,7 @@ const Login = () => {
       localStorage.setItem("user", JSON.stringify(userData.user));
       localStorage.setItem("token", userData.user.token);
       toast.success("Login successful!");
-      navigate("/");
+      navigate("/dashboard");
     } catch (error) {
       toast.error("Login failed. Please check your credentials.");
       console.error("Login error:", error.response?.data?.message);

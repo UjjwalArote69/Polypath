@@ -13,6 +13,7 @@ import ProgressTracker from "./pages/ProgressTracker";
 import Achievements from "./pages/Achievements";
 import Projects from "./pages/Projects";
 import Profile from "./pages/Profile";
+// import AddSkill from "./pages/AddSkill";
 
 const App = () => {
   return (
@@ -23,7 +24,7 @@ const App = () => {
         <Route path="/login" element={<Login />} />
         <Route path="*" element={<NotFound />} />
         <Route
-          path="/"
+          path="/skill-selection"
           element={
             <ProtectedRoute>
               <SkillSelection />
@@ -54,6 +55,14 @@ const App = () => {
             </ProtectedRoute>
           }
         />
+        {/* <Route
+          path="/add-skill"
+          element={
+            <ProtectedRoute>
+              <AddSkill />
+            </ProtectedRoute>
+          }
+        /> */}
         <Route 
           path="/journal"
           element={

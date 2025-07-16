@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { createSkill } from "../services/auth"; // make sure import is correct
+import { createSkill } from "../services/skills"; // make sure import is correct
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 
