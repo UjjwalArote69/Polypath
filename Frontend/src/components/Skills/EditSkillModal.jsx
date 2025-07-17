@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import toast from "react-hot-toast";
-import { createSkill } from "../services/skills";
+import { updateSkill } from "../../services/skills";
 
 const categories = [
   "Programming",
@@ -11,20 +11,20 @@ const categories = [
   "Other",
 ];
 
-const AddSkillModal = ({ onClose, onSuccess }) => {
-  const [title, setTitle] = useState("");
-  const [category, setCategory] = useState("");
-  const [tags, setTags] = useState("");
-  const [progress, setProgress] = useState(0);
+const EditSkillModal = ({ skill, onClose, onSuccess }) => {
+  if (!skill) return null; // If no skill is provided, don't render the modal
+
+  const [title, setTitle] = useState(skill.title || "");
+  const [category, setCategory] = useState(skill.category || "");
+  const [tags, setTags] = useState(skill.tags?.join(", ") || "");
+  const [progress, setProgress] = useState(skill.progress || 0);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!title || !category)
-      return toast.error("Title and category are required");
-
     try {
       const token = localStorage.getItem("token");
-      await createSkill(
+      await updateSkill(
+        skill._id,
         {
           title,
           category,
@@ -33,11 +33,11 @@ const AddSkillModal = ({ onClose, onSuccess }) => {
         },
         token
       );
-      toast.success("Skill added!");
-      onSuccess(); // Callback to refresh list
-      onClose(); // Close modal
+      toast.success("Skill updated!");
+      onSuccess();
+      onClose();
     } catch (err) {
-      toast.error("Error adding skill");
+      toast.error("Error updating skill");
       console.error(err);
     }
   };
@@ -45,7 +45,7 @@ const AddSkillModal = ({ onClose, onSuccess }) => {
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50">
       <div className="bg-[#1c262e] p-6 rounded-lg shadow-lg w-full max-w-md">
-        <h2 className="text-xl font-bold mb-4">Add New Skill</h2>
+        <h2 className="text-xl font-bold mb-4">Edit Skill</h2>
         <form onSubmit={handleSubmit} className="space-y-4">
           <input
             type="text"
@@ -93,9 +93,9 @@ const AddSkillModal = ({ onClose, onSuccess }) => {
             </button>
             <button
               type="submit"
-              className="px-4 py-2 bg-blue-600 rounded hover:bg-blue-700"
+              className="px-4 py-2 bg-green-600 rounded hover:bg-green-700"
             >
-              Add Skill
+              Update
             </button>
           </div>
         </form>
@@ -104,4 +104,4 @@ const AddSkillModal = ({ onClose, onSuccess }) => {
   );
 };
 
-export default AddSkillModal;
+export default EditSkillModal;

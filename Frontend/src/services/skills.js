@@ -17,3 +17,25 @@ export const getSkills = async (token) => {
   });
   return res.data;
 };
+
+export const updateSkill = async (id, skillData, token) => {
+  const res = await axios.put(
+    `http://localhost:5000/api/skills/${id}`,
+    skillData,
+    {
+      headers: {
+        Authorization: `Bearer ${token}`, // ✅ Required for auth
+      },
+    }
+  );
+  return res.data;
+};
+
+export const deleteSkill = async (id, token) => {
+  const res = await axios.delete(`http://localhost:5000/api/skills/${id}`, {
+    headers: {
+      Authorization: `Bearer ${token}`, // ✅ Required for auth
+    },
+  });
+  return res.data;
+};
