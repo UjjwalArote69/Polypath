@@ -13,38 +13,42 @@ const Sidebar = () => {
       {/* TOP: Quick Access Group */}
       <aside className="w-64 bg-[#1A1A1A] flex flex-col justify-between py-4 px-4">
         <div>
-          <h1 className="text-2xl font-bold mb-6">Polypath</h1>
+          <Link
+            to={"/dashboard"}
+          >
+            <button className="cursor-pointer text-2xl font-bold mb-6">Polypath</button>
+          </Link>
           <div className="text-sm font-medium text-gray-400 mb-2">
             Quick Access
           </div>
           <nav className="flex flex-col space-y-2">
             <Link to={"/skills"} className="">
-              <button className="text-left px-3 py-2 rounded-md hover:bg-[#2A2A2A]">
+              <button className="cursor-pointer text-left px-3 py-2 rounded-md hover:bg-[#2A2A2A]">
                 Skills
               </button>
             </Link>
             <Link to={"/journal"} className="">
-              <button className="text-left px-3 py-2 rounded-md hover:bg-[#2A2A2A]">
+              <button className="cursor-pointer text-left px-3 py-2 rounded-md hover:bg-[#2A2A2A]">
                 Journal
               </button>
             </Link>
             <Link to={"/timeline"} className="">
-              <button className="text-left px-3 py-2 rounded-md hover:bg-[#2A2A2A]">
+              <button className="cursor-pointer text-left px-3 py-2 rounded-md hover:bg-[#2A2A2A]">
                 Timeline
               </button>
             </Link>
             <Link to={"/progress-tracker"} className="">
-              <button className="text-left px-3 py-2 rounded-md hover:bg-[#2A2A2A]">
+              <button className="cursor-pointer text-left px-3 py-2 rounded-md hover:bg-[#2A2A2A]">
                 Progress Tracker
               </button>
             </Link>
             <Link to={"/achievements"} className="">
-              <button className="text-left px-3 py-2 rounded-md hover:bg-[#2A2A2A]">
+              <button className="cursor-pointer text-left px-3 py-2 rounded-md hover:bg-[#2A2A2A]">
                 Achievements
               </button>
             </Link>
             <Link to={"/projects"} className="">
-              <button className="text-left px-3 py-2 rounded-md hover:bg-[#2A2A2A]">
+              <button className="cursor-pointer text-left px-3 py-2 rounded-md hover:bg-[#2A2A2A]">
                 Projects
               </button>
             </Link>

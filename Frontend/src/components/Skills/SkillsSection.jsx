@@ -17,10 +17,22 @@ const SkillsSection = ({ skills, onEdit, onDelete }) => {
         >
           <div className="flex justify-between items-center">
             <div>
-              <h3 className="text-lg font-semibold">{skill.title}</h3>
-              <p className="text-sm text-gray-400">{skill.category}</p>
+              <div className="flex gap-2">
+                <h3 className="text-lg font-semibold">{skill.title}</h3>
+                <p className="text-sm text-gray-400">{skill.category}</p>
+              </div>
               <div className="text-sm mt-2">Tags: {skill.tags.join(", ")}</div>
-              <div className="text-sm mt-1">Progress: {skill.progress}%</div>
+              <div className="mt-3">
+                <div className="text-sm text-gray-300 mb-1">
+                  Progress: {skill.progress}%
+                </div>
+                <div className="w-[25vw]  bg-gray-700 rounded-full h-2">
+                  <div
+                    className="bg-green-500 h-2 rounded-full"
+                    style={{ width: `${skill.progress}%` }}
+                  ></div>
+                </div>
+              </div>
             </div>
 
             <div className="flex flex-col gap-2 items-end ml-4">
