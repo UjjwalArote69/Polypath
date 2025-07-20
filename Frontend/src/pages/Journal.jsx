@@ -31,8 +31,6 @@ const Journal = () => {
   const [loading, setLoading] = useState(true);
   const { user } = useUser();
 
-  
-
   useEffect(() => {
     const fetchJournals = async () => {
       try {
@@ -59,10 +57,6 @@ const Journal = () => {
             <Button className="flex gap-2" onClick={() => setShowModal(true)}>
               <PlusCircle size={18} />
               New Entry
-            </Button>
-            <Button variant="outline" className="flex gap-2">
-              <Filter size={18} />
-              Filter
             </Button>
           </div>
         </div>

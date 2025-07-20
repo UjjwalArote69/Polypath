@@ -23,6 +23,7 @@ const App = () => {
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
         <Route path="*" element={<NotFound />} />
+        <Route path="/" element={<Login />} />
         <Route
           path="/skill-selection"
           element={
